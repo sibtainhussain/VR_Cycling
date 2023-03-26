@@ -21,7 +21,7 @@ public class CircleMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.RotateAround(anchor.transform.position, Vector3.up, speedSource.velocity * 20 * Time.deltaTime);
+        transform.RotateAround(anchor.transform.position, Vector3.up, speedSource.velocity * 10 * Time.deltaTime);
         //transform.RotateAround(anchor.transform.position, Vector3.up, 20 * Time.deltaTime);
     }
 }
