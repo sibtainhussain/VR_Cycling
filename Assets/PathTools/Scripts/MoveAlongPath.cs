@@ -7,7 +7,10 @@ namespace Romi.PathTools
     public class MoveAlongPath : MonoBehaviour
     {
         [SerializeField] PathScript path;
-        [SerializeField] float speed = 2f, rotationSpeed = 5f;
+        public GameObject DataCanvas;
+        private DisplayInputData  speedSource;
+
+        [SerializeField] float speed = 2f, rotationSpeed = 5f, speedScale;
         [SerializeField] LoopMode loopMode;
 
         [Space(20)]
@@ -27,11 +30,13 @@ namespace Romi.PathTools
         private void Start()
         {
             runtimeDistance = 0f;
+            speedSource = DataCanvas.GetComponent<DisplayInputData>();
         }
 
         // Update is called once per frame
         void Update()
         {
+            speed = speedSource.velocity * speedScale;
             if (arrived)
                 return;
 
