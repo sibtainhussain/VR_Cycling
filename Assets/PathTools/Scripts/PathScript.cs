@@ -9,7 +9,7 @@ namespace Romi.PathTools
         #region VARIABLES
         [SerializeField] private List<Node> nodes = new List<Node>();
         [SerializeField] private int selectedId;
-        //[SerializeField] private float handleMulti = 0.2f;
+        [SerializeField] private float handleMulti = 0.2f;
         public bool closeLoop, showUpVector;
 
         private const int CURVE_SEGMENT = 20;

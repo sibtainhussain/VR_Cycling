@@ -20,5 +20,8 @@ public struct OrientedPoint {
     public Vector3 LocalToWorld(Vector3 localSpacePos){
         return pos + rot * localSpacePos;
     }
+    public Vector3 LocalToWorldVector(Vector3 localSpacePos){
+        return rot * localSpacePos;
+    }
 
 }

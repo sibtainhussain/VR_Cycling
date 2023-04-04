@@ -29,9 +29,39 @@ public class PathSpline : MonoBehaviour
         mesh.Clear();
 
         List<Vector3> verts = new List<Vector3>();
+        List<Vector3> normals = new List<Vector3>();
         for(int ring = 0; ring < edgeRingCount; ring++){
-
+            float t = ring / (edgeRingCount - 1f);
+            OrientedPoint op = GetBezierPoint(t);
+            for(int i = 0; i < shape2D.VertexCount; i++){
+                verts.Add(op.LocalToWorld(shape2D.vertices[i].point));
+                normals.Add(op.LocalToWorldVector(shape2D.vertices[i].normal));
+            }
         }
+
+        List<int> triIndeces = new List<int>();
+        for(int ring = 0; ring < edgeRingCount-1; ring++){
+            int rootIndex = ring * shape2D.VertexCount;
+            int rootIndexNext = (ring+1) * shape2D.VertexCount;
+            for(int line = 0; line < shape2D.LineCount; line+=2){
+                int currentA = shape2D.lineIndices[line] + rootIndex;
+                int currentB = shape2D.lineIndices[line + 1] + rootIndex;
+                int nextA = shape2D.lineIndices[line] + rootIndexNext;
+                int nextB = shape2D.lineIndices[line + 1] + rootIndexNext;
+
+                triIndeces.Add(currentA);
+                triIndeces.Add(nextA);
+                triIndeces.Add(nextB);
+
+                triIndeces.Add(currentB);
+                triIndeces.Add(currentA);
+                triIndeces.Add(nextB);
+            }
+        }
+
+        mesh.SetVertices(verts);
+        mesh.SetNormals(normals);
+        mesh.SetTriangles(triIndeces, 0);
 
     }
 
