@@ -16,6 +16,7 @@ public class SplinePathEditor : Editor
     SerializedProperty defaultMaterial;
     SerializedProperty controlPointRadius;
     SerializedProperty tTest;
+    SerializedProperty closeLoop;
 
     void OnEnable()
     {
@@ -27,6 +28,7 @@ public class SplinePathEditor : Editor
         defaultMaterial = serializedObject.FindProperty ("defaultMaterial");
         controlPointRadius = serializedObject.FindProperty ("controlPointRadius");
         tTest = serializedObject.FindProperty ("tTest");
+        closeLoop = serializedObject.FindProperty ("closeLoop");
     }
 
     public override void OnInspectorGUI()
@@ -41,6 +43,7 @@ public class SplinePathEditor : Editor
         EditorGUILayout.PropertyField (defaultMaterial, new GUIContent ("Default Material"));
         EditorGUILayout.PropertyField (controlPointRadius, new GUIContent ("Control Point Radius"));
         EditorGUILayout.PropertyField (tTest, new GUIContent ("Test T Value"));
+        EditorGUILayout.PropertyField (closeLoop, new GUIContent ("Closed Loop"));
 
         if(GUILayout.Button("Add Control Point")) {
             source.AddControlPoint();
