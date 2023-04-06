@@ -340,8 +340,8 @@ MonoBehaviour:
     orientation: 0
     tangentType: 0
   - localPos: {x: -86.0717, y: -3.9604683, z: 10.358612}
-    leftHandle: {x: -73.53704, y: -3.9604683, z: 6.721739}
-    rightHandle: {x: -95.48915, y: -3.9604683, z: 13.091042}
+    leftHandle: {x: -69.48265, y: -3.9604683, z: 1.6161156}
+    rightHandle: {x: -107.25279, y: -3.9604683, z: 21.521133}
     orientation: 0
     tangentType: 0
   - localPos: {x: -135.14673, y: -3.9604683, z: 66.48097}
@@ -360,8 +360,8 @@ MonoBehaviour:
     orientation: 0
     tangentType: 0
   - localPos: {x: -209.69789, y: -3.9604683, z: 234.94635}
-    leftHandle: {x: -241.08452, y: -3.9604683, z: 213.31393}
-    rightHandle: {x: -202.75888, y: -3.9604683, z: 239.72888}
+    leftHandle: {x: -243.08551, y: -3.9604683, z: 216.55196}
+    rightHandle: {x: -172.5177, y: -3.9604683, z: 255.4302}
     orientation: 0
     tangentType: 0
   - localPos: {x: -54.084, y: -3.9604683, z: 250.76947}
@@ -370,8 +370,8 @@ MonoBehaviour:
     orientation: 0
     tangentType: 0
   - localPos: {x: 32.34317, y: -3.9604683, z: 209.41437}
-    leftHandle: {x: 28.99845, y: -3.9604683, z: 220.50739}
-    rightHandle: {x: 34.571014, y: -3.9604683, z: 202.02556}
+    leftHandle: {x: 29.382893, y: -3.9604683, z: 234.31061}
+    rightHandle: {x: 33.649963, y: -3.9604683, z: 198.4241}
     orientation: 0
     tangentType: 0
   - localPos: {x: 4.970581, y: -3.9604683, z: 157.1686}
@@ -380,28 +380,28 @@ MonoBehaviour:
     orientation: 0
     tangentType: 0
   - localPos: {x: -90.21324, y: -3.9604683, z: 173.03592}
-    leftHandle: {x: -82.18518, y: -3.9604683, z: 173.03592}
-    rightHandle: {x: -97.8642, y: -3.9604683, z: 173.03592}
+    leftHandle: {x: -60.703148, y: -3.9604683, z: 181.67264}
+    rightHandle: {x: -169.34067, y: -3.9604683, z: 149.8777}
     orientation: 0
     tangentType: 0
-  - localPos: {x: -132.8253, y: -3.9604683, z: 137.63501}
-    leftHandle: {x: -141.91243, y: -3.9604683, z: 160.01712}
-    rightHandle: {x: -127.124405, y: -3.9604683, z: 123.59338}
+  - localPos: {x: -113.1693, y: -3.9604683, z: 120.28868}
+    leftHandle: {x: -122.65088, y: -3.9604683, z: 119.695076}
+    rightHandle: {x: -98.673386, y: -3.9604683, z: 121.19621}
     orientation: 0
     tangentType: 0
   - localPos: {x: -43.291107, y: -3.9604683, z: 116.746994}
-    leftHandle: {x: -48.19403, y: -3.9604683, z: 118.59047}
-    rightHandle: {x: -31.711624, y: -3.9604683, z: 112.39316}
+    leftHandle: {x: -62.004105, y: -3.9604683, z: 120.367966}
+    rightHandle: {x: -25.566986, y: -3.9604683, z: 113.31737}
     orientation: 0
     tangentType: 0
-  - localPos: {x: 33.719513, y: -3.9604683, z: 68.18135}
-    leftHandle: {x: 11.77943, y: -3.9604683, z: 58.3939}
-    rightHandle: {x: 56.876312, y: -3.9604683, z: 78.51157}
+  - localPos: {x: 41.350372, y: -3.9604683, z: 68.18135}
+    leftHandle: {x: 0.8854294, y: -3.9604683, z: 48.390873}
+    rightHandle: {x: 57.76883, y: -3.9604683, z: 76.21124}
     orientation: 0
     tangentType: 0
-  - localPos: {x: 65.74725, y: -3.9604683, z: 132.32053}
-    leftHandle: {x: 59.27838, y: -3.9604683, z: 59.392166}
-    rightHandle: {x: 66.505844, y: -3.9604683, z: 140.87268}
+  - localPos: {x: 63.12686, y: -3.9604683, z: 132.32053}
+    leftHandle: {x: 56.65799, y: -3.9604683, z: 59.392166}
+    rightHandle: {x: 63.885452, y: -3.9604683, z: 140.87268}
     orientation: 0
     tangentType: 0
   - localPos: {x: 109.542694, y: -3.9604683, z: 203.23172}
@@ -428,9 +428,9 @@ MonoBehaviour:
   handleMulti: 2
   closeLoop: 1
   showUpVector: 0
-  lastPos: {x: -90.21324, y: -3.9604683, z: 173.03592}
-  lastLeftHandlePos: {x: -82.18518, y: -3.9604683, z: 173.03592}
-  lastRightHandlePos: {x: -97.8642, y: -3.9604683, z: 173.03592}
+  lastPos: {x: -113.1693, y: -3.9604683, z: 120.28868}
+  lastLeftHandlePos: {x: -122.65088, y: -3.9604683, z: 119.695076}
+  lastRightHandlePos: {x: -98.673386, y: -3.9604683, z: 121.19621}
 --- !u!4 &176047119
 Transform:
   m_ObjectHideFlags: 0
