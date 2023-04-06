@@ -1,19 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
-using System.Linq;
 
 [RequireComponent(typeof(MeshFilter))]
-public class PathSpline : MonoBehaviour
-{
-    [SerializeField]Mesh2D shape2D;
-    [Range(0,1)] [SerializeField] float tTest = 0;
-    [SerializeField] Transform[] controlPoints = new Transform[4];
+[RequireComponent(typeof(MeshRenderer))]
+public class SplineSegment : MonoBehaviour {
 
-    Vector3 GetPos(int i) => controlPoints[i].position;
+    public SplinePath path;
+    public Transform startPoint;
+    public Transform endPoint;
+    public Mesh2D shape2D;
     Mesh mesh;
-    [Range(2, 32)] [SerializeField] int edgeRingCount = 8;
+
+    public SplineSegment(Transform startPoint, Transform endPoint, Mesh2D defaultMesh, SplinePath parent) {
+        this.startPoint = startPoint;
+        this.endPoint = endPoint;
+        this.shape2D = defaultMesh;
+        this.path = parent;
+    }
 
     void Awake()
     {
@@ -22,25 +26,44 @@ public class PathSpline : MonoBehaviour
         GetComponent<MeshFilter>().sharedMesh = mesh;
     }
 
-    void Update() => GenerateMesh();
+    Vector3 GetPos(int i) {
+        if(i == 0){
+            return startPoint.position;
+        }
+        else if(i == 1){
+            return startPoint.TransformPoint(Vector3.forward * startPoint.localScale.z);
+        }
+        else if(i == 2){
+            return endPoint.TransformPoint(Vector3.back * endPoint.localScale.z);
+        }
+        else if(i == 3){
+            return endPoint.position;
+        }
+        return default;
+    }
 
-    void GenerateMesh()
-    {
+    public void GenerateMesh() {
+        if(mesh == null){
+            mesh = new Mesh();
+            mesh.name = "Segment";
+            GetComponent<MeshFilter>().sharedMesh = mesh;
+        }
         mesh.Clear();
-
+        if(GetComponent<Renderer>().sharedMaterial == null){
+            GetComponent<Renderer>().sharedMaterial = path.defaultMaterial;
+        }
         List<Vector3> verts = new List<Vector3>();
         List<Vector3> normals = new List<Vector3>();
-        for(int ring = 0; ring < edgeRingCount; ring++){
-            float t = ring / (edgeRingCount - 1f);
+        for(int ring = 0; ring < path.edgeRingCount; ring++){
+            float t = ring / (path.edgeRingCount - 1f);
             OrientedPoint op = GetBezierPoint(t);
             for(int i = 0; i < shape2D.VertexCount; i++){
                 verts.Add(op.LocalToWorld(shape2D.vertices[i].point));
                 normals.Add(op.LocalToWorldVector(shape2D.vertices[i].normal));
             }
         }
-
         List<int> triIndeces = new List<int>();
-        for(int ring = 0; ring < edgeRingCount-1; ring++){
+        for(int ring = 0; ring < path.edgeRingCount-1; ring++){
             int rootIndex = ring * shape2D.VertexCount;
             int rootIndexNext = (ring+1) * shape2D.VertexCount;
             for(int line = 0; line < shape2D.LineCount; line+=2){
@@ -58,35 +81,12 @@ public class PathSpline : MonoBehaviour
                 triIndeces.Add(nextB);
             }
         }
-
         mesh.SetVertices(verts);
         mesh.SetNormals(normals);
         mesh.SetTriangles(triIndeces, 0);
-
     }
-
-    public void OnDrawGizmos(){
-        for (int i = 0; i < controlPoints.Length; i++){
-            Gizmos.DrawSphere( GetPos(i), 0.05f);
-        }
-
-        Handles.DrawBezier(GetPos(0), GetPos(3), GetPos(1), GetPos(2), Color.white, EditorGUIUtility.whiteTexture, 1f); 
-
-        OrientedPoint testPoint = GetBezierPoint(tTest);
-        Handles.PositionHandle(testPoint.pos, testPoint.rot);
-
-        void DrawPoint(Vector2 localPos) => Gizmos.DrawSphere(testPoint.LocalToWorld(localPos), 0.15f);
-
-        Vector3[] verts = shape2D.vertices.Select(v => testPoint.LocalToWorld(v.point)).ToArray();
-        for(int i = 0; i < shape2D.lineIndices.Length; i+=2){
-            Vector3 a = verts[shape2D.lineIndices[i]];
-            Vector3 b = verts[shape2D.lineIndices[i+1]];
-            Gizmos.DrawLine(a, b);
-        }
-
-    }
-
-    OrientedPoint GetBezierPoint(float t){
+    
+    OrientedPoint GetBezierPoint(float t) {
         Vector3 p0 = GetPos(0);
         Vector3 p1 = GetPos(1);
         Vector3 p2 = GetPos(2);
@@ -101,6 +101,10 @@ public class PathSpline : MonoBehaviour
 
         Vector3 pos = Vector3.Lerp(d, e, t);
         Vector3 tangent = (e - d).normalized;
-        return new OrientedPoint(pos, tangent);
+        Vector3 up = Vector3.Lerp(startPoint.up, endPoint.up, t).normalized;
+        Quaternion rot = Quaternion.LookRotation(tangent, up);
+
+        return new OrientedPoint(pos, rot);
     }
+
 }
