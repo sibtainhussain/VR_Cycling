@@ -50,6 +50,10 @@ public class SplinePathEditor : Editor
             source.CreateSegments();
         }
 
+        if(GUILayout.Button("Reset Segments")) {
+            source.ResetSegments();
+        }
+
         // Apply changes to the serializedProperty - always do this in the end of OnInspectorGUI.
         serializedObject.ApplyModifiedProperties ();
     }

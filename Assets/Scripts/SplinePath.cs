@@ -15,40 +15,10 @@ public class SplinePath : MonoBehaviour
     [Range(0,0.999f)] [SerializeField] float tTest = 0;
 
     void Start() {
-        for(int i = 0; i < controlPoints.Count - 1; i++) {
-            Transform startPoint = controlPoints[i];
-            Transform endPoint = controlPoints[i+1];
-            GameObject pathSegment = new GameObject("Segment " + i);
-            pathSegment.transform.parent = this.gameObject.transform;
-            pathSegment.AddComponent<SplineSegment>();
-            SplineSegment segmentComponent = pathSegment.GetComponent<SplineSegment>();
-            segments.Add(segmentComponent);
-            segmentComponent.startPoint = startPoint;
-            segmentComponent.endPoint = endPoint;
-            segmentComponent.shape2D = defaultShape2D;
-            segmentComponent.path = this;
-            segmentComponent.GenerateMesh();
-        }
+        CreateSegments();
     }
 
     void Update() {
-        GenerateMeshes();
-    }
-
-    public void CreateSegments() {
-        for(int i = segments.Count; i < controlPoints.Count - 1; i++) {
-            Transform startPoint = controlPoints[i];
-            Transform endPoint = controlPoints[i+1];
-            GameObject pathSegment = new GameObject("Segment " + i);
-            pathSegment.transform.parent = this.gameObject.transform;
-            pathSegment.AddComponent<SplineSegment>();
-            SplineSegment segmentComponent = pathSegment.GetComponent<SplineSegment>();
-            segments.Add(segmentComponent);
-            segmentComponent.startPoint = startPoint;
-            segmentComponent.endPoint = endPoint;
-            segmentComponent.shape2D = defaultShape2D;
-            segmentComponent.path = this;
-        }
         GenerateMeshes();
     }
 
@@ -100,6 +70,30 @@ public class SplinePath : MonoBehaviour
         GameObject newPoint = new GameObject("p" + controlPoints.Count);
         newPoint.transform.parent = this.gameObject.transform;
         controlPoints.Add(newPoint.transform);
+    }
+
+    public void CreateSegments() {
+        for(int i = segments.Count; i < controlPoints.Count - 1; i++) {
+            Transform startPoint = controlPoints[i];
+            Transform endPoint = controlPoints[i+1];
+            GameObject pathSegment = new GameObject("Segment " + i);
+            pathSegment.transform.parent = this.gameObject.transform;
+            pathSegment.AddComponent<SplineSegment>();
+            SplineSegment segmentComponent = pathSegment.GetComponent<SplineSegment>();
+            segments.Add(segmentComponent);
+            segmentComponent.startPoint = startPoint;
+            segmentComponent.endPoint = endPoint;
+            segmentComponent.shape2D = defaultShape2D;
+            segmentComponent.path = this;
+        }
+        GenerateMeshes();
+    }
+
+    public void ResetSegments() {
+        for(int i = 0; i < segments.Count; i++) {
+            DestroyImmediate(this.gameObject.transform.Find("Segment " + i).gameObject);
+        }
+        segments = new List<SplineSegment>();
     }
 
     OrientedPoint GetBezierPoint(float t, Transform startPoint, Transform endPoint, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3){
