@@ -17,6 +17,8 @@ public class SplinePathEditor : Editor
     SerializedProperty controlPointRadius;
     SerializedProperty tTest;
     SerializedProperty closeLoop;
+    SerializedProperty pathLength;
+
 
     void OnEnable()
     {
@@ -29,6 +31,7 @@ public class SplinePathEditor : Editor
         controlPointRadius = serializedObject.FindProperty ("controlPointRadius");
         tTest = serializedObject.FindProperty ("tTest");
         closeLoop = serializedObject.FindProperty ("closeLoop");
+        pathLength = serializedObject.FindProperty ("pathLength");
     }
 
     public override void OnInspectorGUI()
@@ -38,12 +41,13 @@ public class SplinePathEditor : Editor
 
         EditorGUILayout.PropertyField (controlPoints, new GUIContent ("Control Points"));
         EditorGUILayout.PropertyField (segments, new GUIContent ("Segments"));
-        EditorGUILayout.PropertyField (edgeRingCount, new GUIContent ("Edge Ring Count"));
         EditorGUILayout.PropertyField (defaultShape2D, new GUIContent ("Default Shape2D"));
         EditorGUILayout.PropertyField (defaultMaterial, new GUIContent ("Default Material"));
         EditorGUILayout.PropertyField (controlPointRadius, new GUIContent ("Control Point Radius"));
         EditorGUILayout.PropertyField (tTest, new GUIContent ("Test T Value"));
+        EditorGUILayout.PropertyField (edgeRingCount, new GUIContent ("Edge Ring Count"));
         EditorGUILayout.PropertyField (closeLoop, new GUIContent ("Closed Loop"));
+        EditorGUILayout.PropertyField (pathLength, new GUIContent ("Path Length"));
 
         if(GUILayout.Button("Add Control Point")) {
             source.AddControlPoint();

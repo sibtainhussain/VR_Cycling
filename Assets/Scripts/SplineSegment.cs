@@ -86,7 +86,18 @@ public class SplineSegment : MonoBehaviour {
         mesh.SetTriangles(triIndeces, 0);
     }
     
-    OrientedPoint GetBezierPoint(float t) {
+    public float SegmentLength(int n = 8) {
+        float length = 0f;
+        Vector3 a = GetBezierPoint(0f).pos;
+        for(int i = 1; i <= n; i++) {
+            Vector3 b = GetBezierPoint((float)i / (float)n).pos;
+            length += (a-b).magnitude;
+            a = b;
+        }
+        return length;
+    }
+
+    public OrientedPoint GetBezierPoint(float t) {
         Vector3 p0 = GetPos(0);
         Vector3 p1 = GetPos(1);
         Vector3 p2 = GetPos(2);

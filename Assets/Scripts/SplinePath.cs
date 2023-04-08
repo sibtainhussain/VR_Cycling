@@ -14,6 +14,7 @@ public class SplinePath : MonoBehaviour
     public Material defaultMaterial;
     [SerializeField] float controlPointRadius = 1f;
     [Range(0,0.999f)] [SerializeField] float tTest = 0;
+    public float pathLength;
 
     void Start() {
         CreateSegments();
@@ -24,8 +25,14 @@ public class SplinePath : MonoBehaviour
     }
 
     void GenerateMeshes(){
+        pathLength = 0f;
         foreach(SplineSegment s in segments) {;
             s.GenerateMesh();
+            pathLength += s.SegmentLength();
+        }
+        Transform extraPath = this.gameObject.transform.Find("Segment " + -1);
+        if(extraPath != null) {
+            pathLength += extraPath.gameObject.GetComponent<SplineSegment>().SegmentLength();
         }
     }
 
@@ -98,6 +105,25 @@ public class SplinePath : MonoBehaviour
         
     }
 
+    public OrientedPoint GetPointAtPosition(float dist) {
+        int extraSegment = closeLoop ? 1 : 0;
+        float t = dist / pathLength;
+        int segmentIndex = Mathf.FloorToInt(t * (controlPoints.Count - 1 + extraSegment));
+        float tValue = t * (controlPoints.Count - 1 + extraSegment) - segmentIndex;
+        if (segmentIndex < segments.Count) {
+            SplineSegment s = segments[segmentIndex];
+            return s.GetBezierPoint(tValue);
+        }
+        else{
+            Transform extraPath = this.gameObject.transform.Find("Segment " + -1);
+            if(extraPath != null) {
+                return extraPath.gameObject.GetComponent<SplineSegment>().GetBezierPoint(tValue);
+            }
+        }
+        Debug.Log("Invalid Position");
+        return segments[0].GetBezierPoint(0f);
+    }
+
     public void AddControlPoint() {
         GameObject newPoint = new GameObject("p" + controlPoints.Count);
         newPoint.transform.parent = this.gameObject.transform;
@@ -118,7 +144,7 @@ public class SplinePath : MonoBehaviour
             segmentComponent.shape2D = defaultShape2D;
             segmentComponent.path = this;
         }
-        if(closeLoop) {
+        if(closeLoop && this.gameObject.transform.Find("Segment " + -1) == null) {
             Transform startPoint = controlPoints[controlPoints.Count-1];
             Transform endPoint = controlPoints[0];
             GameObject pathSegment = new GameObject("Segment " + -1);
@@ -147,6 +173,7 @@ public class SplinePath : MonoBehaviour
             Debug.Log("No Segment -1");
         }
         segments = new List<SplineSegment>();
+        pathLength = 0f;
     }
 
     OrientedPoint GetBezierPoint(float t, Transform startPoint, Transform endPoint, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3){
