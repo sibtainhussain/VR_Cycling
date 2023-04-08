@@ -407,14 +407,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 413606304}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0.030218665, z: -0, w: 0.9995433}
   m_LocalPosition: {x: 29.4, y: 7.4, z: 25}
-  m_LocalScale: {x: 1, y: 1, z: 6.7484}
+  m_LocalScale: {x: 1, y: 1, z: 4.24441}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 810500680}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -3.463, z: 0}
 --- !u!1 &520507372
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,7 +599,8 @@ MonoBehaviour:
   - {fileID: 688523472}
   - {fileID: 1482485114}
   segments: []
-  edgeRingCount: 32
+  closeLoop: 0
+  edgeRingCount: 8
   defaultShape2D: {fileID: 11400000, guid: af0175af405690746a43eefa9a7ddb96, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 557d0670f1b1b6845bb3a39f84fa141d, type: 2}
   controlPointRadius: 1
@@ -649,14 +650,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353870810}
-  m_LocalRotation: {x: -0, y: 0.99580383, z: -0, w: 0.09151395}
+  m_LocalRotation: {x: -0, y: 0.99434745, z: -0, w: -0.106175356}
   m_LocalPosition: {x: -7.9, y: 15, z: 34.8}
-  m_LocalScale: {x: 1, y: 1, z: 3.3301635}
+  m_LocalScale: {x: 1, y: 1, z: 4.249622}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 810500680}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 169.499, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 192.19, z: 0}
 --- !u!1 &1482485113
 GameObject:
   m_ObjectHideFlags: 0
