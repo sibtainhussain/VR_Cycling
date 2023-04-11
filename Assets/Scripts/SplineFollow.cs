@@ -5,7 +5,7 @@ using UnityEngine;
 public class SplineFollow : MonoBehaviour
 {
     [SerializeField] SplinePath path;
-    [SerializeField] float speed = 2f, float yOffset = 2, rotationSpeed = 5f;
+    [SerializeField] float speed = 2f, yOffset = 2, rotationSpeed = 5f;
     [SerializeField] bool loop = true;
     [SerializeField] float pathPosition;
     
