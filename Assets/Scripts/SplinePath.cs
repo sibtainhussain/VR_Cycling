@@ -32,6 +32,7 @@ public class SplinePath : MonoBehaviour
         }
         Transform extraPath = this.gameObject.transform.Find("Segment " + -1);
         if(extraPath != null) {
+            extraPath.gameObject.GetComponent<SplineSegment>().GenerateMesh();
             pathLength += extraPath.gameObject.GetComponent<SplineSegment>().SegmentLength();
         }
     }
@@ -155,7 +156,6 @@ public class SplinePath : MonoBehaviour
             segmentComponent.endPoint = endPoint;
             segmentComponent.shape2D = defaultShape2D;
             segmentComponent.path = this;
-            segmentComponent.GenerateMesh();
         }
         GenerateMeshes();
     }

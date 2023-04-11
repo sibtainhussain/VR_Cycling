@@ -5,9 +5,10 @@ using UnityEngine;
 public class SplineFollow : MonoBehaviour
 {
     [SerializeField] SplinePath path;
-    [SerializeField] float speed = 2f, rotationSpeed = 5f;
+    [SerializeField] float speed = 2f, float yOffset = 2, rotationSpeed = 5f;
     [SerializeField] bool loop = true;
     [SerializeField] float pathPosition;
+    
     public float distanceTraveled;
 
 
@@ -26,6 +27,7 @@ public class SplineFollow : MonoBehaviour
         pathPosition = Mathf.Repeat(distanceTraveled, path.pathLength);
         Debug.Log(pathPosition);
         OrientedPoint point = path.GetPointAtPosition(pathPosition);
+        point.pos += transform.up * yOffset;
         transform.position = point.pos;
         transform.rotation = Quaternion.Lerp(transform.rotation, point.rot, rotationSpeed * Time.deltaTime);
     }
