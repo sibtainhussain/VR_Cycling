@@ -112,7 +112,6 @@ GameObject:
   - component: {fileID: 6941566701472052275}
   - component: {fileID: 6941566701472052272}
   - component: {fileID: 6941566701472052273}
-  - component: {fileID: 6941566701472052277}
   m_Layer: 0
   m_Name: VRCameraBasic
   m_TagString: Untagged
@@ -199,20 +198,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6941566701472052277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6941566701472052302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9781be30f04868c4d9605bff6ef11026, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anchor: {fileID: 0}
-  DataCanvas: {fileID: 4588145287786863149}
 --- !u!1 &6941566701517727947
 GameObject:
   m_ObjectHideFlags: 0
@@ -1889,11 +1874,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44d8076f5f9042c4eb1095c8ffcb6ad1, type: 3}
---- !u!1 &4588145287786863149 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6915624637272012079, guid: 44d8076f5f9042c4eb1095c8ffcb6ad1, type: 3}
-  m_PrefabInstance: {fileID: 6941566701588885250}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &7685142952839351334 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 788828053017240356, guid: 44d8076f5f9042c4eb1095c8ffcb6ad1, type: 3}
