@@ -128,6 +128,10 @@ public class SplinePath : MonoBehaviour
     public void AddControlPoint() {
         GameObject newPoint = new GameObject("p" + controlPoints.Count);
         newPoint.transform.parent = this.gameObject.transform;
+        if(controlPoints.Count > 0){
+            newPoint.transform.position = controlPoints[^1].position + controlPoints[^1].forward * 30;
+            newPoint.transform.localScale = Vector3.Scale(transform.localScale, new Vector3(1,1,3));
+        }
         controlPoints.Add(newPoint.transform);
     }
 
