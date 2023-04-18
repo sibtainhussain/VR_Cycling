@@ -18,4 +18,14 @@ public class Mesh2D : ScriptableObject
 
     public int VertexCount => vertices.Length;
     public int LineCount => lineIndices.Length;
+
+    public float CalcUspan() {
+        float dist = 0;
+        for (int i = 0; i < LineCount; i+=2) {
+            Vector2 a = vertices[lineIndices[i]].point;
+            Vector2 b = vertices[lineIndices[i+1]].point;
+            dist += (b - a).magnitude;
+        }
+        return dist;
+    }
 }

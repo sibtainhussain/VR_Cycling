@@ -52,14 +52,17 @@ public class SplineSegment : MonoBehaviour {
         if(GetComponent<Renderer>().sharedMaterial == null){
             GetComponent<Renderer>().sharedMaterial = path.defaultMaterial;
         }
+        float uSpan = shape2D.CalcUspan();
         List<Vector3> verts = new List<Vector3>();
         List<Vector3> normals = new List<Vector3>();
+        List<Vector2> uvs = new List<Vector2>();
         for(int ring = 0; ring < path.edgeRingCount; ring++){
             float t = ring / (path.edgeRingCount - 1f);
             OrientedPoint op = GetBezierPoint(t);
             for(int i = 0; i < shape2D.VertexCount; i++){
                 verts.Add(op.LocalToWorld(shape2D.vertices[i].point));
                 normals.Add(op.LocalToWorldVector(shape2D.vertices[i].normal));
+                uvs.Add(new Vector2(shape2D.vertices[i].u, t * SegmentLength() / uSpan));
             }
         }
         List<int> triIndeces = new List<int>();
@@ -83,6 +86,7 @@ public class SplineSegment : MonoBehaviour {
         }
         mesh.SetVertices(verts);
         mesh.SetNormals(normals);
+        mesh.SetUVs(0, uvs);
         mesh.SetTriangles(triIndeces, 0);
     }
     

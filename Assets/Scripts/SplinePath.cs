@@ -9,6 +9,7 @@ public class SplinePath : MonoBehaviour
     [SerializeField] List<Transform> controlPoints = new List<Transform>();
     [SerializeField] List<SplineSegment> segments = new List<SplineSegment>();
     [SerializeField] bool closeLoop;
+    [SerializeField] bool update = true;
     [Range(2, 32)] public int edgeRingCount = 8;
     public Mesh2D defaultShape2D;
     public Material defaultMaterial;
@@ -21,7 +22,8 @@ public class SplinePath : MonoBehaviour
     }
 
     void Update() {
-        GenerateMeshes();
+        if(update)
+            GenerateMeshes();
     }
 
     void GenerateMeshes(){
@@ -113,12 +115,15 @@ public class SplinePath : MonoBehaviour
         float tValue = t * (controlPoints.Count - 1 + extraSegment) - segmentIndex;
         if (segmentIndex < segments.Count) {
             SplineSegment s = segments[segmentIndex];
-            return s.GetBezierPoint(tValue);
+            //return s.GetBezierPoint(tValue * s.SegmentLength() / pathLength);
+            return s.GetBezierPoint( tValue );
         }
         else{
             Transform extraPath = this.gameObject.transform.Find("Segment " + -1);
             if(extraPath != null) {
-                return extraPath.gameObject.GetComponent<SplineSegment>().GetBezierPoint(tValue);
+                SplineSegment s = extraPath.gameObject.GetComponent<SplineSegment>();
+                //return s.GetBezierPoint( tValue * s.SegmentLength() / pathLength);
+                return s.GetBezierPoint( tValue );
             }
         }
         Debug.Log("Invalid Position");
