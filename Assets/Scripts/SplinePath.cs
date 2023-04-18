@@ -16,9 +16,13 @@ public class SplinePath : MonoBehaviour
     [SerializeField] float controlPointRadius = 1f;
     [Range(0,0.999f)] [SerializeField] float tTest = 0;
     public float pathLength;
+    float completedLength = 0f;
+    int currentSegment = 0;
 
     void Start() {
         CreateSegments();
+        currentSegment = 0;
+        completedLength = 0f;
     }
 
     void Update() {
@@ -107,7 +111,7 @@ public class SplinePath : MonoBehaviour
         Gizmos.color = Color.white;
         
     }
-
+/*
     public OrientedPoint GetPointAtPosition(float dist) {
         int extraSegment = closeLoop ? 1 : 0;
         float t = dist / pathLength;
@@ -129,6 +133,37 @@ public class SplinePath : MonoBehaviour
         Debug.Log("Invalid Position");
         return segments[0].GetBezierPoint(0f);
     }
+*/
+
+    public OrientedPoint GetPointAtPosition(float dist) {
+        int extraSegment = closeLoop ? 1 : 0;
+        Debug.Log("Current Segment: " + currentSegment);
+        Debug.Log("Segment Length: " + segments[currentSegment].SegmentLength());
+        Debug.Log("Segment Dist: " + (dist-completedLength));
+        if (dist - completedLength >= segments[currentSegment].SegmentLength()) {
+            currentSegment++;
+            completedLength += segments[currentSegment].SegmentLength();
+        }
+        if(currentSegment >= segments.Count + extraSegment) {
+            currentSegment = 0;
+            completedLength = 0f;
+        }
+        float t = (dist-completedLength)/segments[currentSegment].SegmentLength();
+        if (currentSegment < segments.Count) {
+            SplineSegment s = segments[currentSegment];
+            return s.GetBezierPoint( t );
+        }
+        else{
+            Transform extraPath = this.gameObject.transform.Find("Segment " + -1);
+            if(extraPath != null) {
+                SplineSegment s = extraPath.gameObject.GetComponent<SplineSegment>();
+                return s.GetBezierPoint( t );
+            }
+        }
+        Debug.Log("Invalid Position");
+        return segments[0].GetBezierPoint(0f);
+    }
+
 
     public void AddControlPoint() {
         GameObject newPoint = new GameObject("p" + controlPoints.Count);
