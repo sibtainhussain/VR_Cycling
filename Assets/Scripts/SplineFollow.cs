@@ -25,7 +25,7 @@ public class SplineFollow : MonoBehaviour
             return;
         }
         pathPosition = Mathf.Repeat(distanceTraveled, path.pathLength);
-        Debug.Log(pathPosition);
+        //Debug.Log(pathPosition);
         OrientedPoint point = path.GetPointAtPosition(pathPosition);
         point.pos += transform.up * yOffset;
         transform.position = point.pos;

@@ -10,6 +10,7 @@ public class SplineSegment : MonoBehaviour {
     public Transform startPoint;
     public Transform endPoint;
     public Mesh2D shape2D;
+    public float segmentLength;
     Mesh mesh;
 
     public SplineSegment(Transform startPoint, Transform endPoint, Mesh2D defaultMesh, SplinePath parent) {
@@ -17,6 +18,7 @@ public class SplineSegment : MonoBehaviour {
         this.endPoint = endPoint;
         this.shape2D = defaultMesh;
         this.path = parent;
+        this.segmentLength = SegmentLength();
     }
 
     void Awake()
