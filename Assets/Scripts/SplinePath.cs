@@ -111,7 +111,7 @@ public class SplinePath : MonoBehaviour
         Gizmos.color = Color.white;
         
     }
-/*
+
     public OrientedPoint GetPointAtPosition(float dist) {
         int extraSegment = closeLoop ? 1 : 0;
         float t = dist / pathLength;
@@ -133,9 +133,7 @@ public class SplinePath : MonoBehaviour
         Debug.Log("Invalid Position");
         return segments[0].GetBezierPoint(0f);
     }
-*/
-
-    public OrientedPoint GetPointAtPosition(float dist) {
+    public OrientedPoint GetPointByDistance(float dist) {
         int i;
         for(i = 0; i < segmentLengths.Count; i++){
             if (segmentLengths[i] >= dist) {
@@ -163,7 +161,6 @@ public class SplinePath : MonoBehaviour
         Debug.Log("Invalid Position");
         return segments[0].GetBezierPoint(0f);
     }
-
 
     public void AddControlPoint() {
         GameObject newPoint = new GameObject("p" + controlPoints.Count);
