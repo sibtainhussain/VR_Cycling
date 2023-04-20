@@ -16,6 +16,7 @@ public class SplinePath : MonoBehaviour
     [SerializeField] float controlPointRadius = 1f;
     [Range(0,0.999f)] [SerializeField] float tTest = 0;
     public float pathLength;
+    List<float> segmentLengths = new List<float>();
 
     void Start() {
         CreateSegments();
@@ -28,14 +29,17 @@ public class SplinePath : MonoBehaviour
 
     void GenerateMeshes(){
         pathLength = 0f;
+        segmentLengths.Clear();
         foreach(SplineSegment s in segments) {;
             s.GenerateMesh();
             pathLength += s.SegmentLength();
+            segmentLengths.Add(pathLength);
         }
         Transform extraPath = this.gameObject.transform.Find("Segment " + -1);
         if(extraPath != null) {
             extraPath.gameObject.GetComponent<SplineSegment>().GenerateMesh();
             pathLength += extraPath.gameObject.GetComponent<SplineSegment>().SegmentLength();
+            segmentLengths.Add(pathLength);
         }
     }
 
@@ -107,7 +111,7 @@ public class SplinePath : MonoBehaviour
         Gizmos.color = Color.white;
         
     }
-
+/*
     public OrientedPoint GetPointAtPosition(float dist) {
         int extraSegment = closeLoop ? 1 : 0;
         float t = dist / pathLength;
@@ -129,6 +133,37 @@ public class SplinePath : MonoBehaviour
         Debug.Log("Invalid Position");
         return segments[0].GetBezierPoint(0f);
     }
+*/
+
+    public OrientedPoint GetPointAtPosition(float dist) {
+        int i;
+        for(i = 0; i < segmentLengths.Count; i++){
+            if (segmentLengths[i] >= dist) {
+                break;
+            }
+        }
+        float t;
+        if (i == 0) {
+            t = dist / segmentLengths[i];
+        }
+        else{
+            t = (dist-segmentLengths[i-1])/(segmentLengths[i]-segmentLengths[i-1]);
+        }
+        if (i < segments.Count) {
+            SplineSegment s = segments[i];
+            return s.GetBezierPoint( t );
+        }
+        else{
+            Transform extraPath = this.gameObject.transform.Find("Segment " + -1);
+            if(extraPath != null) {
+                SplineSegment s = extraPath.gameObject.GetComponent<SplineSegment>();
+                return s.GetBezierPoint( t );
+            }
+        }
+        Debug.Log("Invalid Position");
+        return segments[0].GetBezierPoint(0f);
+    }
+
 
     public void AddControlPoint() {
         GameObject newPoint = new GameObject("p" + controlPoints.Count);
