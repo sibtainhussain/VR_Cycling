@@ -16,13 +16,10 @@ public class SplinePath : MonoBehaviour
     [SerializeField] float controlPointRadius = 1f;
     [Range(0,0.999f)] [SerializeField] float tTest = 0;
     public float pathLength;
-    float completedLength = 0f;
-    int currentSegment = 0;
+    List<float> segmentLengths = new List<float>();
 
     void Start() {
         CreateSegments();
-        currentSegment = 0;
-        completedLength = 0f;
     }
 
     void Update() {
@@ -32,14 +29,17 @@ public class SplinePath : MonoBehaviour
 
     void GenerateMeshes(){
         pathLength = 0f;
+        segmentLengths.Clear();
         foreach(SplineSegment s in segments) {;
             s.GenerateMesh();
             pathLength += s.SegmentLength();
+            segmentLengths.Add(pathLength);
         }
         Transform extraPath = this.gameObject.transform.Find("Segment " + -1);
         if(extraPath != null) {
             extraPath.gameObject.GetComponent<SplineSegment>().GenerateMesh();
             pathLength += extraPath.gameObject.GetComponent<SplineSegment>().SegmentLength();
+            segmentLengths.Add(pathLength);
         }
     }
 
@@ -136,21 +136,21 @@ public class SplinePath : MonoBehaviour
 */
 
     public OrientedPoint GetPointAtPosition(float dist) {
-        int extraSegment = closeLoop ? 1 : 0;
-        Debug.Log("Current Segment: " + currentSegment);
-        Debug.Log("Segment Length: " + segments[currentSegment].SegmentLength());
-        Debug.Log("Segment Dist: " + (dist-completedLength));
-        if (dist - completedLength >= segments[currentSegment].SegmentLength()) {
-            currentSegment++;
-            completedLength += segments[currentSegment].SegmentLength();
+        int i;
+        for(i = 0; i < segmentLengths.Count; i++){
+            if (segmentLengths[i] >= dist) {
+                break;
+            }
         }
-        if(currentSegment >= segments.Count + extraSegment) {
-            currentSegment = 0;
-            completedLength = 0f;
+        float t;
+        if (i == 0) {
+            t = dist / segmentLengths[i];
         }
-        float t = (dist-completedLength)/segments[currentSegment].SegmentLength();
-        if (currentSegment < segments.Count) {
-            SplineSegment s = segments[currentSegment];
+        else{
+            t = (dist-segmentLengths[i-1])/(segmentLengths[i]-segmentLengths[i-1]);
+        }
+        if (i < segments.Count) {
+            SplineSegment s = segments[i];
             return s.GetBezierPoint( t );
         }
         else{
