@@ -1261,6 +1261,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6261709132042824141, guid: 17c2af74a825c4943bcbc81aa918e806, type: 3}
+      propertyPath: m_PositionAction.m_Reference
+      value: 
+      objectReference: {fileID: -2024308242397127297, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    - target: {fileID: 6261709132042824141, guid: 17c2af74a825c4943bcbc81aa918e806, type: 3}
+      propertyPath: m_RotationAction.m_Reference
+      value: 
+      objectReference: {fileID: 8248158260566104461, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    - target: {fileID: 6261709132042824141, guid: 17c2af74a825c4943bcbc81aa918e806, type: 3}
       propertyPath: m_SelectAction.m_Action.m_Id
       value: e498a636-4690-4928-aba9-4117d19f7ff7
       objectReference: {fileID: 0}
@@ -1285,6 +1293,14 @@ PrefabInstance:
       value: Select
       objectReference: {fileID: 0}
     - target: {fileID: 6261709132042824141, guid: 17c2af74a825c4943bcbc81aa918e806, type: 3}
+      propertyPath: m_PositionAction.m_UseReference
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6261709132042824141, guid: 17c2af74a825c4943bcbc81aa918e806, type: 3}
+      propertyPath: m_RotationAction.m_UseReference
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6261709132042824141, guid: 17c2af74a825c4943bcbc81aa918e806, type: 3}
       propertyPath: m_UIPressAction.m_Action.m_Name
       value: UI Press
       objectReference: {fileID: 0}
@@ -1304,6 +1320,10 @@ PrefabInstance:
       propertyPath: m_SelectActionValue.m_Action.m_Id
       value: e1dcceef-1fd3-4ec3-8978-d320e86b0e9b
       objectReference: {fileID: 0}
+    - target: {fileID: 6261709132042824141, guid: 17c2af74a825c4943bcbc81aa918e806, type: 3}
+      propertyPath: m_TrackingStateAction.m_Reference
+      value: 
+      objectReference: {fileID: 684395432459739428, guid: c348712bda248c246b8c49b3db54643f, type: 3}
     - target: {fileID: 6261709132042824141, guid: 17c2af74a825c4943bcbc81aa918e806, type: 3}
       propertyPath: m_HapticDeviceAction.m_Action.m_Id
       value: a8785f8f-4679-4385-9a98-14fbc451314e
@@ -1335,6 +1355,10 @@ PrefabInstance:
     - target: {fileID: 6261709132042824141, guid: 17c2af74a825c4943bcbc81aa918e806, type: 3}
       propertyPath: m_RotateAnchorAction.m_Action.m_Name
       value: Rotate Anchor
+      objectReference: {fileID: 0}
+    - target: {fileID: 6261709132042824141, guid: 17c2af74a825c4943bcbc81aa918e806, type: 3}
+      propertyPath: m_TrackingStateAction.m_UseReference
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6261709132042824141, guid: 17c2af74a825c4943bcbc81aa918e806, type: 3}
       propertyPath: m_UIPressActionValue.m_Action.m_Name
