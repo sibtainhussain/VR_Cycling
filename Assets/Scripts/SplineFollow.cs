@@ -39,6 +39,7 @@ public class SplineFollow : MonoBehaviour
         OrientedPoint point = path.GetPointAtPosition(0f);
         point.pos += transform.up * yOffset;
         transform.position = point.pos;
+        transform.rotation = Quaternion.Lerp(transform.rotation, point.rot, 1f);
     }
 
 }
