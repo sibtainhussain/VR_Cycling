@@ -9,22 +9,22 @@ EditorBuildSettings:
     path: 
     guid: 84729f097001ec749b94e16c2d310f45
   - enabled: 1
-    path: Assets/Scenes/DemoScene.unity
+    path: Assets/Scenes/Testing/DemoScene.unity
     guid: 1245fa3030b8b8e46b54b452b1598e1d
   - enabled: 1
-    path: Assets/Scenes/ControlsScene.unity
+    path: Assets/Scenes/Menus/ControlsScene.unity
     guid: d7fe4c8c44fd9b744aba53135ec04cca
   - enabled: 1
-    path: Assets/Scenes/GameScene.unity
+    path: Assets/Scenes/Menus/GameScene.unity
     guid: bea3ea723b1a84444a4522926bc2e881
   - enabled: 1
-    path: Assets/Scenes/MainMenuScene.unity
+    path: Assets/Scenes/Menus/MainMenuScene.unity
     guid: 6a6ca451b22184246a58ad95c0a6becd
   - enabled: 1
-    path: Assets/Scenes/SettingsScreen.unity
+    path: Assets/Scenes/Menus/SettingsScreen.unity
     guid: a251dab5f0e7af64e922154d9b3cc62e
   - enabled: 1
-    path: Assets/Scenes/StatsScreen.unity
+    path: Assets/Scenes/Menus/StatsScreen.unity
     guid: 41b74b60a7eae59459f863348d834083
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: ec3bc4d05fefd644ea6c85288c65abb1, type: 2}
