@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
-public class SplineFollow1 : MonoBehaviour
+
+public class SplineFollow : MonoBehaviour
 {
     [SerializeField] SplinePath path;
     [SerializeField] float speed = 2f, yOffset = 2, rotationSpeed = 5f;
@@ -31,4 +33,12 @@ public class SplineFollow1 : MonoBehaviour
         transform.position = point.pos;
         transform.rotation = Quaternion.Lerp(transform.rotation, point.rot, rotationSpeed * Time.deltaTime);
     }
+
+    void OnValidate()
+    {
+        OrientedPoint point = path.GetPointAtPosition(0f);
+        point.pos += transform.up * yOffset;
+        transform.position = point.pos;
+    }
+
 }
