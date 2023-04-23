@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class PauseController : MonoBehaviour
@@ -33,27 +34,32 @@ public class PauseController : MonoBehaviour
         controlsMenu.SetActive(false);
         settingsMenu.SetActive(false);
         gameHUD.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     void Pause() {        
         paused = true;
         controlsMenu.SetActive(true);
         gameHUD.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
     }
     
     public void getSettings() {
         settingsMenu.SetActive(true);
         controlsMenu.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void getControls() {
         settingsMenu.SetActive(false);
         controlsMenu.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void getQuit() {
         MainMenu.PrevScene = "GameScene";
         SceneManager.LoadScene("MainMenuScene");
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
 }
