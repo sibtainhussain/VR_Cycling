@@ -12,7 +12,6 @@ public class PauseController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
-        Time.timeScale = 1f;
         Resume();
     }
 
@@ -31,7 +30,6 @@ public class PauseController : MonoBehaviour
 
     public void Resume() {
         paused = false;
-        Time.timeScale = 1f;
         controlsMenu.SetActive(false);
         settingsMenu.SetActive(false);
         gameHUD.SetActive(true);
@@ -39,7 +37,6 @@ public class PauseController : MonoBehaviour
 
     void Pause() {        
         paused = true;
-        Time.timeScale = 0f;
         controlsMenu.SetActive(true);
         gameHUD.SetActive(false);
     }
