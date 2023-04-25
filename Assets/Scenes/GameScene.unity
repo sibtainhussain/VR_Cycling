@@ -6441,6 +6441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9ea441b8eba4cf9934eea18443926d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputs: {fileID: 702531620}
   controlsMenu: {fileID: 1855468785}
   settingsMenu: {fileID: 1728918502}
   gameHUD: {fileID: 1716667615}
