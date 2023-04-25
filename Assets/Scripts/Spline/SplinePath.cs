@@ -99,7 +99,7 @@ public class SplinePath : MonoBehaviour
 
             if(controlPoints.Count-1 == segmentIndex) {
                 OrientedPoint testPoint = GetBezierPoint(tValue, startPoint, endPoint, p0, p1, p2, p3);
-                Handles.PositionHandle(testPoint.pos, testPoint.rot);
+                //Handles.PositionHandle(testPoint.pos, testPoint.rot);
                 Vector3[] verts = defaultShape2D.vertices.Select(v => testPoint.LocalToWorld(v.point)).ToArray();
                 for(int j = 0; j < defaultShape2D.lineIndices.Length; j+=2){
                     Vector3 a = verts[defaultShape2D.lineIndices[j]];
@@ -166,8 +166,8 @@ public class SplinePath : MonoBehaviour
         GameObject newPoint = new GameObject("p" + controlPoints.Count);
         newPoint.transform.parent = this.gameObject.transform;
         if(controlPoints.Count > 0){
-            newPoint.transform.position = controlPoints[^1].position + controlPoints[^1].forward * 30;
-            newPoint.transform.localScale = Vector3.Scale(transform.localScale, new Vector3(1,1,3));
+            newPoint.transform.position = controlPoints[^1].position + controlPoints[^1].forward * 50;
+            newPoint.transform.localScale = Vector3.Scale(transform.localScale, new Vector3(1,1,10));
         }
         controlPoints.Add(newPoint.transform);
     }
