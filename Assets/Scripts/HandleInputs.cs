@@ -12,7 +12,8 @@ public class HandleInputs : MonoBehaviour
     public Image speedBar;
     public TextMeshProUGUI bpmText;
     public Image bpmBar;
-    public TextMeshProUGUI TimeText;
+    public TextMeshProUGUI SecondsText;
+    public TextMeshProUGUI MinutesText;
     public TextMeshProUGUI HoursText;
     public TextMeshProUGUI DistanceText;
     public TextMeshProUGUI TotalText;
@@ -101,8 +102,9 @@ public class HandleInputs : MonoBehaviour
         speedBar.fillAmount = (velocity-minSpeed)/(maxSpeed-minSpeed);
         bpmText.text = heartRate.ToString("F0");
         bpmBar.fillAmount = (heartRate-minHR)/(maxHR-minHR);
-        TimeText.text = ":" + minutes.ToString("D2") + ":" + seconds.ToString("D2");
         HoursText.text = hours.ToString("D2");
+        MinutesText.text = minutes.ToString("D2");
+        SecondsText.text = seconds.ToString("D2");
         DistanceText.text = (player.distanceTraveled/unitsPerMile).ToString("F1");
         TotalText.text = (player.path.pathLength/unitsPerMile).ToString("F1");
         progressBar.fillAmount = player.pathPosition/player.path.pathLength;
