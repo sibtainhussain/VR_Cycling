@@ -99,9 +99,9 @@ public class HandleInputs : MonoBehaviour
         }
 
         speedText.text = velocity.ToString("F0");
-        speedBar.fillAmount = (velocity-minSpeed)/(maxSpeed-minSpeed);
+        speedBar.fillAmount = (velocity - minSpeed) / (maxSpeed - minSpeed) * (0.75 - 0f) + 0f;
         bpmText.text = heartRate.ToString("F0");
-        bpmBar.fillAmount = (heartRate-minHR)/(maxHR-minHR);
+        bpmBar.fillAmount = (heartRate - minHR) / (maxHR - minHR) * (0.75 - 0f) + 0f;
         HoursText.text = hours.ToString("D2");
         MinutesText.text = minutes.ToString("D2");
         SecondsText.text = seconds.ToString("D2");
