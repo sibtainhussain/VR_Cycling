@@ -37,7 +37,7 @@ public class PauseController : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
     }
 
-    void Pause() {        
+    public void Pause() {        
         paused = true;
         controlsMenu.SetActive(true);
         gameHUD.SetActive(false);

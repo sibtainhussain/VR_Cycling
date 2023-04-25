@@ -6,14 +6,14 @@ using UnityEditor;
 
 public class SplineFollow : MonoBehaviour
 {
-    [SerializeField] SplinePath path;
-    [SerializeField] float speed = 2f, yOffset = 2, rotationSpeed = 5f;
+    public SplinePath path;
+    public float speed = 2f;
+    [SerializeField] float yOffset = 2, rotationSpeed = 5f;
     [SerializeField] bool loop = true;
-    [SerializeField] float pathPosition;
-    
+    public float pathPosition;
     public float distanceTraveled;
-
-
+    
+    
     void Start()
     {
         pathPosition = 0f;
