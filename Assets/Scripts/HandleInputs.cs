@@ -45,7 +45,6 @@ public class HandleInputs : MonoBehaviour
     {
         if (_inputData._leftController.TryGetFeatureValue(CommonUsages.menuButton, out bool clicked))
         {
-            Debug.Log("Pause Clicked: " + clicked);
             if(held && !clicked) {
                 pause = !pause;
                 if(pause) {
