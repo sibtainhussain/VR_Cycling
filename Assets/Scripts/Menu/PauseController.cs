@@ -33,6 +33,7 @@ public class PauseController : MonoBehaviour
     public void Resume() {
         paused = false;
         inputs.pause = false;
+        time.timesScale = 1;
         controlsMenu.SetActive(false);
         settingsMenu.SetActive(false);
         gameHUD.SetActive(true);
