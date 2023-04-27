@@ -842,14 +842,14 @@ PrefabInstance:
     - target: {fileID: 9217254700265498930, guid: 107cfd4757154d748a9956edb8dffee6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 387808218}
+      objectReference: {fileID: 1505857450}
     - target: {fileID: 9217254700265498930, guid: 107cfd4757154d748a9956edb8dffee6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Resume
       objectReference: {fileID: 0}
     - target: {fileID: 9217254700265498930, guid: 107cfd4757154d748a9956edb8dffee6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PauseController, Assembly-CSharp
+      value: HandleInputs, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 107cfd4757154d748a9956edb8dffee6, type: 3}
