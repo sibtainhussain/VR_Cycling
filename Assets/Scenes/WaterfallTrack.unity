@@ -719,6 +719,14 @@ PrefabInstance:
       propertyPath: controlsMenu
       value: 
       objectReference: {fileID: 387808217}
+    - target: {fileID: 3662741189788751896, guid: 107cfd4757154d748a9956edb8dffee6, type: 3}
+      propertyPath: m_ModelPrefab
+      value: 
+      objectReference: {fileID: 8270855663187062767, guid: 1392f805216c47742996d4742c80721c, type: 3}
+    - target: {fileID: 3662741189788751899, guid: 107cfd4757154d748a9956edb8dffee6, type: 3}
+      propertyPath: m_ModelPrefab
+      value: 
+      objectReference: {fileID: 3475118261464492563, guid: 9f3369e30fbd31f4bb596b1a99babe83, type: 3}
     - target: {fileID: 3662741190323286360, guid: 107cfd4757154d748a9956edb8dffee6, type: 3}
       propertyPath: m_IsActive
       value: 0
