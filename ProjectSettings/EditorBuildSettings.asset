@@ -7,28 +7,31 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 0
     path: 
-    guid: 84729f097001ec749b94e16c2d310f45
-  - enabled: 1
-    path: Assets/Scenes/Testing/DemoScene.unity
-    guid: 1245fa3030b8b8e46b54b452b1598e1d
-  - enabled: 1
-    path: Assets/Scenes/Menus/ControlsScene.unity
-    guid: d7fe4c8c44fd9b744aba53135ec04cca
-  - enabled: 1
-    path: Assets/Scenes/Menus/PauseScreen.unity
-    guid: bea3ea723b1a84444a4522926bc2e881
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Menus/MainMenuScene.unity
     guid: 6a6ca451b22184246a58ad95c0a6becd
   - enabled: 1
-    path: Assets/Scenes/Menus/SettingsScreen.unity
-    guid: a251dab5f0e7af64e922154d9b3cc62e
+    path: Assets/Scenes/Menus/ControlsScene.unity
+    guid: d7fe4c8c44fd9b744aba53135ec04cca
   - enabled: 1
     path: Assets/Scenes/Menus/StatsScreen.unity
     guid: 41b74b60a7eae59459f863348d834083
   - enabled: 1
+    path: Assets/Scenes/Menus/SettingsScreen.unity
+    guid: a251dab5f0e7af64e922154d9b3cc62e
+  - enabled: 1
+    path: Assets/Scenes/Menus/MapSelectScene.unity
+    guid: 81e899c1161018049b738fd02a18e0e8
+  - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: 03c1d4c5bfbee1d41951e53e1708200a
+  - enabled: 1
+    path: Assets/Scenes/WaterfallTrack.unity
+    guid: 25d178ac6af34134098ada71a47dcc09
+  - enabled: 1
+    path: Assets/Scenes/Menus/PauseScreen.unity
+    guid: bea3ea723b1a84444a4522926bc2e881
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: ec3bc4d05fefd644ea6c85288c65abb1, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: a40f1465a1abae44fbeb7692c83861d9, type: 2}

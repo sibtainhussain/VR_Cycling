@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour
     public static string PrevScene;
     
     public void startGame() {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("MapSelectScene");
         PrevScene = "MainMenuScene";
     }
 

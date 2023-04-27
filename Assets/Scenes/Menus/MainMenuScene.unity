@@ -5170,6 +5170,7 @@ MonoBehaviour:
   - SettingsScreen
   - StatsScreen
   - ControlsScene
+  - MapSelectScene
   instanceName: MainTheme
 --- !u!82 &1926118163
 AudioSource:
