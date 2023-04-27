@@ -12,6 +12,7 @@ public class SplineSegment : MonoBehaviour {
     public Mesh2D shape2D;
     public float segmentLength;
     Mesh mesh;
+    public bool curve;
 
     public SplineSegment(Transform startPoint, Transform endPoint, Mesh2D defaultMesh, SplinePath parent) {
         this.startPoint = startPoint;
@@ -19,6 +20,16 @@ public class SplineSegment : MonoBehaviour {
         this.shape2D = defaultMesh;
         this.path = parent;
         this.segmentLength = SegmentLength();
+        this.curve = true;
+    }
+
+    public SplineSegment(Transform startPoint, Transform endPoint, Mesh2D defaultMesh, SplinePath parent, bool curve) {
+        this.startPoint = startPoint;
+        this.endPoint = endPoint;
+        this.shape2D = defaultMesh;
+        this.path = parent;
+        this.segmentLength = SegmentLength();
+        this.curve = curve;
     }
 
     void Awake()
@@ -60,7 +71,7 @@ public class SplineSegment : MonoBehaviour {
         List<Vector2> uvs = new List<Vector2>();
         for(int ring = 0; ring < path.edgeRingCount; ring++){
             float t = ring / (path.edgeRingCount - 1f);
-            OrientedPoint op = GetBezierPoint(t);
+            OrientedPoint op = GetPointAt(t);
             for(int i = 0; i < shape2D.VertexCount; i++){
                 verts.Add(op.LocalToWorld(shape2D.vertices[i].point));
                 normals.Add(op.LocalToWorldVector(shape2D.vertices[i].normal));
@@ -94,13 +105,22 @@ public class SplineSegment : MonoBehaviour {
     
     public float SegmentLength(int n = 8) {
         float length = 0f;
-        Vector3 a = GetBezierPoint(0f).pos;
+        Vector3 a = GetPointAt(0f).pos;
         for(int i = 1; i <= n; i++) {
-            Vector3 b = GetBezierPoint((float)i / (float)n).pos;
+            Vector3 b = GetPointAt((float)i / (float)n).pos;
             length += (a-b).magnitude;
             a = b;
         }
         return length;
+    }
+
+    public OrientedPoint GetPointAt(float t) {
+        if(curve) {
+            return GetBezierPoint(t);
+        }
+        else{
+            return new OrientedPoint(Vector3.Lerp(startPoint.position, endPoint.position, t), startPoint.rotation);
+        }
     }
 
     public OrientedPoint GetBezierPoint(float t) {

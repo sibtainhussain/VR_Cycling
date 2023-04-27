@@ -28,18 +28,18 @@ public class SplineFollow : MonoBehaviour
         }
         pathPosition = Mathf.Repeat(distanceTraveled, path.pathLength);
         //Debug.Log(pathPosition);
-        OrientedPoint point = path.GetPointAtPosition(pathPosition);
+        OrientedPoint point = path.GetPointByDistance(pathPosition);
         point.pos += transform.up * yOffset;
         transform.position = point.pos;
         transform.rotation = Quaternion.Lerp(transform.rotation, point.rot, rotationSpeed * Time.deltaTime);
     }
-
-    /*public void OnDrawGizmos()
+/*
+    public void OnValidate()
     {
         OrientedPoint point = path.GetPointAtPosition(0f);
         point.pos += transform.up * yOffset;
         transform.position = point.pos;
         transform.rotation = Quaternion.Lerp(transform.rotation, point.rot, 1f);
-    }*/
-
+    }
+*/
 }

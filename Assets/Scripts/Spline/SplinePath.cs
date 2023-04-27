@@ -6,7 +6,7 @@ using System.Linq;
 
 public class SplinePath : MonoBehaviour
 {
-    [SerializeField] List<Transform> controlPoints = new List<Transform>();
+    [SerializeField] List<ControlPoint> controlPoints = new List<ControlPoint>();
     [SerializeField] List<SplineSegment> segments = new List<SplineSegment>();
     [SerializeField] bool closeLoop;
     [SerializeField] bool update = true;
@@ -49,8 +49,8 @@ public class SplinePath : MonoBehaviour
         int segmentIndex = Mathf.FloorToInt(tTest * (controlPoints.Count - 1 + extraSegment));
         float tValue = tTest * (controlPoints.Count - 1 + extraSegment) - segmentIndex;
         for(int i = 0; i < controlPoints.Count - 1; i++) {
-            Transform startPoint = controlPoints[i];
-            Transform endPoint = controlPoints[i+1];
+            Transform startPoint = controlPoints[i].pos;
+            Transform endPoint = controlPoints[i+1].pos;
             Vector3 p0 = startPoint.position;
             Vector3 p1 = startPoint.TransformPoint(Vector3.forward * startPoint.localScale.z);
             Vector3 p2 = endPoint.TransformPoint(Vector3.back * endPoint.localScale.z);
@@ -65,9 +65,15 @@ public class SplinePath : MonoBehaviour
             Handles.DrawDottedLine(p3, p2, dashSize);
 
             Gizmos.color = Color.white;
-            Handles.DrawBezier(p0, p3, p1, p2, Color.white, EditorGUIUtility.whiteTexture, 1f); 
+            if(controlPoints[i].curve) {
+                Handles.DrawBezier(p0, p3, p1, p2, Color.white, EditorGUIUtility.whiteTexture, 1f); 
+            }
+            else {
+                Handles.DrawLine(p0, p3, 1f);
+            }
+            
 
-            if(i == segmentIndex) {
+/*            if(i == segmentIndex) {
                 OrientedPoint testPoint = GetBezierPoint(tValue, startPoint, endPoint, p0, p1, p2, p3);
                 Handles.PositionHandle(testPoint.pos, testPoint.rot);
                 Vector3[] verts = defaultShape2D.vertices.Select(v => testPoint.LocalToWorld(v.point)).ToArray();
@@ -77,10 +83,11 @@ public class SplinePath : MonoBehaviour
                     Gizmos.DrawLine(a, b);
                 }
             }
+*/
         }
         if (closeLoop) {
-            Transform startPoint = controlPoints[controlPoints.Count-1];
-            Transform endPoint = controlPoints[0];
+            Transform startPoint = controlPoints[controlPoints.Count-1].pos;
+            Transform endPoint = controlPoints[0].pos;
             Vector3 p0 = startPoint.position;
             Vector3 p1 = startPoint.TransformPoint(Vector3.forward * startPoint.localScale.z);
             Vector3 p2 = endPoint.TransformPoint(Vector3.back * endPoint.localScale.z);
@@ -120,14 +127,14 @@ public class SplinePath : MonoBehaviour
         if (segmentIndex < segments.Count) {
             SplineSegment s = segments[segmentIndex];
             //return s.GetBezierPoint(tValue * s.SegmentLength() / pathLength);
-            return s.GetBezierPoint( tValue );
+            return s.GetPointAt( tValue );
         }
         else{
             Transform extraPath = this.gameObject.transform.Find("Segment " + -1);
             if(extraPath != null) {
                 SplineSegment s = extraPath.gameObject.GetComponent<SplineSegment>();
                 //return s.GetBezierPoint( tValue * s.SegmentLength() / pathLength);
-                return s.GetBezierPoint( tValue );
+                return s.GetPointAt( tValue );
             }
         }
         Debug.Log("Invalid Position");
@@ -149,33 +156,33 @@ public class SplinePath : MonoBehaviour
         }
         if (i < segments.Count) {
             SplineSegment s = segments[i];
-            return s.GetBezierPoint( t );
+            return s.GetPointAt( t );
         }
         else{
             Transform extraPath = this.gameObject.transform.Find("Segment " + -1);
             if(extraPath != null) {
                 SplineSegment s = extraPath.gameObject.GetComponent<SplineSegment>();
-                return s.GetBezierPoint( t );
+                return s.GetPointAt( t );
             }
         }
         Debug.Log("Invalid Position");
-        return segments[0].GetBezierPoint(0f);
+        return segments[0].GetPointAt(0f);
     }
 
     public void AddControlPoint() {
         GameObject newPoint = new GameObject("p" + controlPoints.Count);
         newPoint.transform.parent = this.gameObject.transform;
         if(controlPoints.Count > 0){
-            newPoint.transform.position = controlPoints[^1].position + controlPoints[^1].forward * 50;
+            newPoint.transform.position = controlPoints[^1].pos.position + controlPoints[^1].pos.forward * 50;
             newPoint.transform.localScale = Vector3.Scale(transform.localScale, new Vector3(1,1,10));
         }
-        controlPoints.Add(newPoint.transform);
+        controlPoints.Add(new ControlPoint(newPoint.transform, true));
     }
 
     public void CreateSegments() {
         for(int i = segments.Count; i < controlPoints.Count - 1; i++) {
-            Transform startPoint = controlPoints[i];
-            Transform endPoint = controlPoints[i+1];
+            Transform startPoint = controlPoints[i].pos;
+            Transform endPoint = controlPoints[i+1].pos;
             GameObject pathSegment = new GameObject("Segment " + i);
             pathSegment.transform.parent = this.gameObject.transform;
             pathSegment.AddComponent<SplineSegment>();
@@ -185,10 +192,11 @@ public class SplinePath : MonoBehaviour
             segmentComponent.endPoint = endPoint;
             segmentComponent.shape2D = defaultShape2D;
             segmentComponent.path = this;
+            segmentComponent.curve = controlPoints[i].curve;
         }
         if(closeLoop && this.gameObject.transform.Find("Segment " + -1) == null) {
-            Transform startPoint = controlPoints[controlPoints.Count-1];
-            Transform endPoint = controlPoints[0];
+            Transform startPoint = controlPoints[controlPoints.Count-1].pos;
+            Transform endPoint = controlPoints[0].pos;
             GameObject pathSegment = new GameObject("Segment " + -1);
             pathSegment.transform.parent = this.gameObject.transform;
             pathSegment.AddComponent<SplineSegment>();
@@ -197,6 +205,7 @@ public class SplinePath : MonoBehaviour
             segmentComponent.endPoint = endPoint;
             segmentComponent.shape2D = defaultShape2D;
             segmentComponent.path = this;
+            segmentComponent.curve = controlPoints[^1].curve;
         }
         GenerateMeshes();
     }

@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4824185736830480200}
-  m_LocalRotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
@@ -220,6 +220,7 @@ MonoBehaviour:
   endPoint: {fileID: 5635017500846012377}
   shape2D: {fileID: 11400000, guid: af0175af405690746a43eefa9a7ddb96, type: 2}
   segmentLength: 0
+  curve: 0
 --- !u!1 &5635017500092671727
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,6 +322,7 @@ MonoBehaviour:
   endPoint: {fileID: 5635017501789022714}
   shape2D: {fileID: 11400000, guid: af0175af405690746a43eefa9a7ddb96, type: 2}
   segmentLength: 0
+  curve: 0
 --- !u!1 &5635017500228028969
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,6 +424,7 @@ MonoBehaviour:
   endPoint: {fileID: 5635017501221905359}
   shape2D: {fileID: 11400000, guid: af0175af405690746a43eefa9a7ddb96, type: 2}
   segmentLength: 0
+  curve: 0
 --- !u!1 &5635017500333697830
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,6 +588,7 @@ MonoBehaviour:
   endPoint: {fileID: 5635017501936862134}
   shape2D: {fileID: 11400000, guid: af0175af405690746a43eefa9a7ddb96, type: 2}
   segmentLength: 0
+  curve: 0
 --- !u!1 &5635017500385406272
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,6 +690,7 @@ MonoBehaviour:
   endPoint: {fileID: 5635017500872920127}
   shape2D: {fileID: 11400000, guid: af0175af405690746a43eefa9a7ddb96, type: 2}
   segmentLength: 0
+  curve: 0
 --- !u!1 &5635017500392343868
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,6 +792,7 @@ MonoBehaviour:
   endPoint: {fileID: 5635017500643933536}
   shape2D: {fileID: 11400000, guid: af0175af405690746a43eefa9a7ddb96, type: 2}
   segmentLength: 0
+  curve: 0
 --- !u!1 &5635017500437527212
 GameObject:
   m_ObjectHideFlags: 0
@@ -888,6 +894,7 @@ MonoBehaviour:
   endPoint: {fileID: 5635017501693817814}
   shape2D: {fileID: 11400000, guid: af0175af405690746a43eefa9a7ddb96, type: 2}
   segmentLength: 0
+  curve: 0
 --- !u!1 &5635017500643933537
 GameObject:
   m_ObjectHideFlags: 0
@@ -1020,6 +1027,7 @@ MonoBehaviour:
   endPoint: {fileID: 5635017501941372531}
   shape2D: {fileID: 11400000, guid: af0175af405690746a43eefa9a7ddb96, type: 2}
   segmentLength: 0
+  curve: 0
 --- !u!1 &5635017500708928468
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,6 +1129,7 @@ MonoBehaviour:
   endPoint: {fileID: 5635017500997403470}
   shape2D: {fileID: 11400000, guid: af0175af405690746a43eefa9a7ddb96, type: 2}
   segmentLength: 0
+  curve: 0
 --- !u!1 &5635017500721226282
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,6 +1262,7 @@ MonoBehaviour:
   endPoint: {fileID: 5635017500721226285}
   shape2D: {fileID: 11400000, guid: af0175af405690746a43eefa9a7ddb96, type: 2}
   segmentLength: 0
+  curve: 0
 --- !u!1 &5635017500846012374
 GameObject:
   m_ObjectHideFlags: 0
@@ -1416,6 +1426,7 @@ MonoBehaviour:
   endPoint: {fileID: 5635017499927263417}
   shape2D: {fileID: 11400000, guid: af0175af405690746a43eefa9a7ddb96, type: 2}
   segmentLength: 0
+  curve: 0
 --- !u!1 &5635017500997005633
 GameObject:
   m_ObjectHideFlags: 0
@@ -1553,21 +1564,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlPoints:
-  - {fileID: 5635017500997403470}
-  - {fileID: 5635017500846012377}
-  - {fileID: 5635017500643933536}
-  - {fileID: 5635017500872920127}
-  - {fileID: 5635017501936862134}
-  - {fileID: 5635017501693817814}
-  - {fileID: 5635017500333697833}
-  - {fileID: 5635017499927263417}
-  - {fileID: 5635017501941372531}
-  - {fileID: 5635017501789022714}
-  - {fileID: 5635017501930835898}
-  - {fileID: 5635017500997005632}
-  - {fileID: 5635017500721226285}
-  - {fileID: 5635017500344981709}
-  - {fileID: 5635017501221905359}
+  - pos: {fileID: 5635017500997403470}
+    curve: 1
+  - pos: {fileID: 5635017500846012377}
+    curve: 1
+  - pos: {fileID: 5635017500643933536}
+    curve: 1
+  - pos: {fileID: 5635017500872920127}
+    curve: 1
+  - pos: {fileID: 5635017501936862134}
+    curve: 1
+  - pos: {fileID: 5635017501693817814}
+    curve: 1
+  - pos: {fileID: 5635017500333697833}
+    curve: 1
+  - pos: {fileID: 5635017499927263417}
+    curve: 1
+  - pos: {fileID: 5635017501941372531}
+    curve: 1
+  - pos: {fileID: 5635017501789022714}
+    curve: 1
+  - pos: {fileID: 5635017501930835898}
+    curve: 1
+  - pos: {fileID: 5635017500997005632}
+    curve: 1
+  - pos: {fileID: 5635017500721226285}
+    curve: 1
+  - pos: {fileID: 5635017500344981709}
+    curve: 1
+  - pos: {fileID: 5635017501221905359}
+    curve: 1
   segments:
   - {fileID: 5635017499928400096}
   - {fileID: 5635017500392343840}
@@ -1723,6 +1749,7 @@ MonoBehaviour:
   endPoint: {fileID: 5635017500344981709}
   shape2D: {fileID: 11400000, guid: af0175af405690746a43eefa9a7ddb96, type: 2}
   segmentLength: 0
+  curve: 0
 --- !u!1 &5635017501503323398
 GameObject:
   m_ObjectHideFlags: 0
@@ -1824,6 +1851,7 @@ MonoBehaviour:
   endPoint: {fileID: 5635017500333697833}
   shape2D: {fileID: 11400000, guid: af0175af405690746a43eefa9a7ddb96, type: 2}
   segmentLength: 0
+  curve: 0
 --- !u!1 &5635017501543469594
 GameObject:
   m_ObjectHideFlags: 0
@@ -2080,6 +2108,7 @@ MonoBehaviour:
   endPoint: {fileID: 5635017501930835898}
   shape2D: {fileID: 11400000, guid: af0175af405690746a43eefa9a7ddb96, type: 2}
   segmentLength: 0
+  curve: 0
 --- !u!1 &5635017501862283373
 GameObject:
   m_ObjectHideFlags: 0
@@ -2224,6 +2253,7 @@ MonoBehaviour:
   endPoint: {fileID: 5635017500997005632}
   shape2D: {fileID: 11400000, guid: af0175af405690746a43eefa9a7ddb96, type: 2}
   segmentLength: 0
+  curve: 0
 --- !u!1 &5635017501899628647
 GameObject:
   m_ObjectHideFlags: 0
