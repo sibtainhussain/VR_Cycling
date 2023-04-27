@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 using TMPro;
 
 [RequireComponent(typeof(GetInputs))]
@@ -22,6 +23,8 @@ public class HandleInputs : MonoBehaviour
     public Material textMaterial;
     public Material textOutlineMaterial;
     public PauseController pauseController;
+    public XRInteractorLineVisual leftLineVis;
+    public XRInteractorLineVisual rightLineVis;
     
     private GetInputs _inputData;
     public float velocity;
@@ -42,6 +45,20 @@ public class HandleInputs : MonoBehaviour
         _inputData = GetComponent<GetInputs>();
     }
     // Update is called once per frame
+    public void Pause(){
+        leftLineVis.enabled = true;
+        rightLineVis.enabled = true;
+        pauseController.Pause();
+        Time.timeScale = 0;
+    }
+
+    public void Resume(){
+        leftLineVis.enabled = false;
+        rightLineVis.enabled = false;
+        pauseController.Resume();
+        Time.timeScale = 1;
+    }
+
     void Update()
     {
         if (_inputData._leftController.TryGetFeatureValue(CommonUsages.menuButton, out bool clicked))
@@ -49,12 +66,10 @@ public class HandleInputs : MonoBehaviour
             if(held && !clicked) {
                 pause = !pause;
                 if(pause) {
-                    pauseController.Pause();
-                    Time.timeScale = 0;
+                    Pause();
                 }
                 else {
-                    pauseController.Resume();
-                    Time.timeScale = 1;
+                    Resume();
                 }
             }
             held = clicked;
@@ -107,6 +122,6 @@ public class HandleInputs : MonoBehaviour
         SecondsText.text = seconds.ToString("D2");
         DistanceText.text = (player.distanceTraveled/unitsPerMile).ToString("F1");
         TotalText.text = (player.path.pathLength/unitsPerMile).ToString("F1");
-        progressBar.fillAmount = player.pathPosition/player.path.pathLength;
+        progressBar.fillAmount = ((player.pathPosition/player.path.pathLength) - 0f) / (1f - 0f) * (0.88f - 0.12f) + 0.12f;
     }
 }
